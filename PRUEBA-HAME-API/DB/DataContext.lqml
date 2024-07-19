@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database Name="PRUEBA-HAME" EntityNamespace="PRUEBAHAMEContext" ContextNamespace="PRUEBAHAMEContext" Class="PRUEBAHAMEDataContext" xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" ed:Guid="5954d680-51c4-4f60-93e8-4c041f226f54" Provider="Devart.Data.SqlServer.Linq.Provider.SqlDataProvider, Devart.Data.SqlServer.Linq" Extended="true" xmlns="http://schemas.devart.com/linqconnect/mapping">
+  <Connection Mode="ConnectionString" ConnectionString="Data Source=DESKTOP-FF9K8UH;Initial Catalog=PRUEBA-HAME;Integrated Security=True;Persist Security Info=True" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Clientes" Member="Clientes">
+    <Type Name="Cliente" ed:Guid="ee94cca0-a2ec-4552-ae4f-00cf078849f0">
+      <Column Name="ClienteID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="1f4a9e57-c5ff-473e-81d2-5fc8ba975309" />
+      <Column Name="Nombre" Type="System.String" DbType="NVARCHAR(100) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="100" Unicode="true" ed:ValidateMaxLength="100" ed:ValidateRequired="true" ed:Guid="b68f0142-2a77-4fdc-8a32-6f3d9dd15aac" />
+      <Column Name="FechaAlta" Type="System.DateTime" DbType="DATE NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="9ec73eb3-5b35-43f9-b92f-e19ce486ff17" />
+      <Column Name="Direccion" Type="System.String" DbType="NVARCHAR(200) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="200" Unicode="true" ed:ValidateMaxLength="200" ed:ValidateRequired="true" ed:Guid="09e97dda-a068-4750-8d7e-e4d70c3f10ac" />
+      <Column Name="Correo" Type="System.String" DbType="NVARCHAR(100)" CanBeNull="true" UpdateCheck="Never" MaxLength="100" Unicode="true" ed:ValidateMaxLength="100" ed:ValidateRequired="false" ed:Guid="0fa39790-1fa3-475f-855a-f9aada071f36" />
+      <Column Name="Telefono" Type="System.String" DbType="NVARCHAR(20)" CanBeNull="true" UpdateCheck="Never" MaxLength="20" Unicode="true" ed:ValidateMaxLength="20" ed:ValidateRequired="false" ed:Guid="148fca32-0a6d-4f72-90d5-53e2e98a0547" />
+      <Column Name="Estado" Type="System.Boolean" DbType="BIT NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="07011a46-d3ad-4285-9487-5fd1954fc663" />
+      <Association Name="Cliente_ClienteServicio" ed:AssociationGuid="e4bc86c1-fe27-4565-b352-87c2d904ccbc" Member="ClienteServicios" ed:Guid="be89b533-9c30-4513-81e0-3291ff41c37b" ThisKey="ClienteID" OtherKey="ClienteID" Type="ClienteServicio" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ClienteServicios" Member="ClienteServicios">
+    <Type Name="ClienteServicio" ed:Guid="199c23ce-3366-47ce-9640-ba14565a4077">
+      <Column Name="ClienteServicioID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="3aec0c29-f123-49c0-88ee-f217eb5b85b7" />
+      <Column Name="ClienteID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="050ae2c9-f8d1-408a-9ee3-32a0a0c0f136" />
+      <Column Name="ServicioID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="d985f012-a827-438c-ad7c-ff8d3434e5c1" />
+      <Column Name="FechaAsignacion" Type="System.DateTime" DbType="DATE NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="4b3cb555-1a69-4265-b4ba-8669a51d2c0a" />
+      <Association Name="Servicio_ClienteServicio" ed:AssociationGuid="1e9bb2a8-9de7-4d0a-ab26-e1437135d8e2" Member="Servicio" ed:Guid="1260d233-e8a5-4cd2-9ef9-556c6d614b32" ThisKey="ServicioID" OtherKey="ServicioID" Type="Servicio" DeleteRule="NO ACTION" IsForeignKey="true" />
+      <Association Name="Cliente_ClienteServicio" ed:AssociationGuid="e4bc86c1-fe27-4565-b352-87c2d904ccbc" Member="Cliente" ed:Guid="e9152cb2-05fc-4e04-9d54-34e42f234ae9" ThisKey="ClienteID" OtherKey="ClienteID" Type="Cliente" DeleteRule="NO ACTION" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Servicios" Member="Servicios">
+    <Type Name="Servicio" ed:Guid="05ae6f5d-95de-4b9b-b9bb-16059e4799a5">
+      <Column Name="ServicioID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="3ac49051-aff6-40ca-b1ba-3712f6da7180" />
+      <Column Name="TipoServicio" Type="System.String" DbType="NVARCHAR(50) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="c132cc42-c583-4898-8adb-d0400208e069" />
+      <Column Name="Costo" Type="System.Decimal" DbType="DECIMAL(10,2) NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" Scale="2" ed:ValidateRequired="true" ed:Guid="e55bc3ac-723b-421d-a35a-ed9f08468f65" />
+      <Column Name="Estado" Type="System.Boolean" DbType="BIT" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="70ebaee2-0562-4ac8-92bd-61363bda3184" />
+      <Association Name="Servicio_ClienteServicio" ed:AssociationGuid="1e9bb2a8-9de7-4d0a-ab26-e1437135d8e2" Member="ClienteServicios" ed:Guid="9c8ee4e7-2f32-4a6a-9099-fd66473dba38" ThisKey="ServicioID" OtherKey="ServicioID" Type="ClienteServicio" />
+    </Type>
+  </Table>
+  <Type Name="GetServicesByClientIDResult" ed:Guid="604db216-65f3-4e94-a86e-93ebfdd94759">
+    <Column Name="TipoServicio" Type="System.String" DbType="NVARCHAR(50) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="ee03119f-aacb-4f14-9cc5-2f71c62b6243" />
+    <Column Name="Costo" Type="System.Decimal" DbType="DECIMAL(10,2) NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" Scale="2" ed:ValidateRequired="true" ed:Guid="183c1669-881a-4ba4-9027-9c06ed785fcb" />
+    <Column Name="FechaAsignacion" Type="System.DateTime" DbType="DATE NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="260192a4-bde7-491e-91b2-c12689d76bf9" />
+  </Type>
+  <Function Name="dbo.deleteClient" Method="DeleteClient" ed:Guid="a7015d46-9235-436f-808b-83cdaf1589fe">
+    <Parameter Name="ClienteID" Type="System.Int32" DbType="INT" Precision="10" Scale="0" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_AddCliente" Method="SpAddCliente" ed:Guid="e385ef9b-b2c6-483c-9fb3-799217634b9b">
+    <Parameter Name="Nombre" Type="System.String" DbType="NVARCHAR(100)" FixedLength="true" MaxLength="100" />
+    <Parameter Name="FechaAlta" Type="System.DateTime" DbType="DATE" />
+    <Parameter Name="Direccion" Type="System.String" DbType="NVARCHAR(200)" FixedLength="true" MaxLength="200" />
+    <Parameter Name="Correo" Type="System.String" DbType="NVARCHAR(100)" FixedLength="true" MaxLength="100" />
+    <Parameter Name="Telefono" Type="System.String" DbType="NVARCHAR(20)" FixedLength="true" MaxLength="20" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_AddServicio" Method="SpAddServicio" ed:Guid="59d60909-61a0-423e-b2c3-85340cc01c9f">
+    <Parameter Name="TipoServicio" Type="System.String" DbType="NVARCHAR(50)" FixedLength="true" MaxLength="50" />
+    <Parameter Name="Costo" Type="System.Decimal" DbType="DECIMAL(10,2)" Precision="10" Scale="2" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_AsignarServicio" Method="SpAsignarServicio" ed:Guid="784e430a-087f-411e-84ee-d6372931f5d2">
+    <Parameter Name="ClienteID" Type="System.Int32" DbType="INT" Precision="10" Scale="0" />
+    <Parameter Name="ServicioID" Type="System.Int32" DbType="INT" Precision="10" Scale="0" />
+    <Parameter Name="FechaAsignacion" Type="System.DateTime" DbType="DATE" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.updateClient" Method="UpdateClient" ed:Guid="42ff1887-f850-4f77-b015-bf35e8d77579">
+    <Parameter Name="ClienteID" Type="System.Int32" DbType="INT" Precision="10" Scale="0" />
+    <Parameter Name="Nombre" Type="System.String" DbType="NVARCHAR(100)" FixedLength="true" MaxLength="100" />
+    <Parameter Name="FechaAlta" Type="System.DateTime" DbType="DATE" />
+    <Parameter Name="Direccion" Type="System.String" DbType="NVARCHAR(200)" FixedLength="true" MaxLength="200" />
+    <Parameter Name="Correo" Type="System.String" DbType="NVARCHAR(100)" FixedLength="true" MaxLength="100" />
+    <Parameter Name="Telefono" Type="System.String" DbType="NVARCHAR(20)" FixedLength="true" MaxLength="20" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.getServicesByClientID" Method="GetServicesByClientID" ed:Guid="d2e013ff-de42-48ef-8ccf-3a29cb25da2a">
+    <Parameter Name="ClienteID" Type="System.Int32" DbType="INT" Precision="10" Scale="0" />
+    <ElementType Type="GetServicesByClientIDResult" />
+  </Function>
+</Database>
